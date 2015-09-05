@@ -1,22 +1,24 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:background="#C3C3C3"
     android:baselineAligned="false"
-    android:longClickable="true">
+    android:longClickable="true"
+    android:weightSum="1">
 
 
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dip"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="20dp"
     android:padding="20dip"
-    android:paddingRight="20dip"
+    android:id="@+id/top"
     android:background="#FFFFFF"
-    android:layout_gravity="top|center_horizontal">
+    android:layout_gravity="top|center_horizontal"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -41,9 +43,9 @@
     android:layout_below="@+id/dept"
     android:text="0"
     android:layout_marginLeft="30dp"
-    android:textColor="#333333"
-    android:textSize="30dp"
-    android:paddingTop="15dip"
+        android:textColor="#333333"
+        android:textSize="30dp"
+        android:paddingTop="15dip"
 
     android:id="@+id/achievementNumber"
     />
@@ -66,22 +68,75 @@
         android:paddingTop="15dip"
         android:id="@+id/percentage"
         />
-</RelativeLayout>
-    <GridLayout
-        android:layout_width="wrap_content"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_row="@integer/abc_config_activityShortDur"
+        android:layout_below="@+id/dept"
         android:textColor="#333333"
-        android:layout_below="@+id/percentage"
-        />
+        android:textSize="30dp"
+        android:paddingTop="15dip"
+        android:text="0%"
+        android:layout_alignParentRight="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Complete"
+        android:id="@+id/pctText"
+        android:textColor="#333333"
+        android:layout_below="@+id/achievementNumber"
+        android:layout_alignParentRight="true"
 
-</GridLayout>
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
-</LinearLayout>
+        />
+</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/top">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACHIEVEMENTS"
+            android:paddingLeft="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:id="@+id/achText"
+            android:textColor="#000"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:textColor="#000"
+            android:background="#C3C3C3"
+            android:layout_height="3dp"
+            android:layout_below="@+id/achText"
+            android:id="@+id/textView" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:text="1"
+            android:background="#000"
+
+            android:layout_below="@+id/textView"
+            android:layout_alignParentStart="true"
+            android:foreground="@drawable/ach" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:text="1"
+            android:background="#000"
+
+            android:layout_below="@+id/textView"
+            android:foreground="@drawable/ach" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

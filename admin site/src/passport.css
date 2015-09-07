@@ -1,0 +1,188 @@
+      .z-depth-1 {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .z-depth-1-half {
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .z-depth-2 {
+            box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .z-depth-3 {
+            box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .z-depth-4,
+        {
+            box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
+        }
+
+        .z-depth-5 {
+            box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+        }
+
+        .header {
+            background-color: #F7F7F7;
+            color: black;
+        }
+
+        .header h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.75em;
+        }
+
+        .login-card {
+            padding: 60px;
+            width: 300px;
+            background-color: #F7F7F7;
+            margin: 50 auto 10px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .login-card h3 {
+            text-align: center;
+            font-size: 1.3em;
+            text-transform: uppercase;
+        }
+
+        .login {
+            text-align: center;
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 700;
+            height: 36px;
+            padding: 0 8px;
+        }
+
+        .text {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #other {
+            margin-left: 10px;
+            border: solid 1px;
+        }
+
+        #content {
+            margin-top: 20px;
+        }
+
+        .users {
+            height: 200px;
+            overflow: auto;
+        }
+        /*.margin20 {
+        margin-top: 20px;
+        }*/
+
+        .center {
+            text-align: center;
+            left: 50%;
+        }
+
+        .addusers {
+            line-height: 25px;
+            margin-top: 20px;
+            padding: 10px 10px 10px 10px;
+        }
+
+        .addusers input {
+            text-align: left;
+            float: right;
+            width: 60%;
+            border: none !important;
+            border-bottom-style: solid !important;
+            border-bottom-width: thin !important;
+            border-radius: 0px !important;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        select#users:focus {
+            border: none;
+        }
+        #users {
+            border-radius:0px;
+            border:none;
+            width:98%;
+            margin-left:1%;
+            margin-right:1%;
+        }
+        .addusers input:focus {
+            outline: none;
+            border: none;
+            border-bottom-color: blue;
+            border-bottom-style: solid;
+            border-bottom-width: thin;
+        }
+        select.choose {
+            margin-bottom: 0px;
+        }
+        .TopLeft {
+            background: red;
+            color: white;
+            padding: 0;
+        }
+        #search {
+            background: red;
+            color: white;
+            border: none;
+            outline: none;
+            width: 50%; 
+        }
+        #search:focus {
+            border-bottom: solid 1px;
+            border-bottom-color: black;
+            border-radius: 0px;
+        }
+        .columns {
+            background-color: lightGrey;
+        }
+        .choose {
+            background-color: red;
+            color: white;
+            outline: none;
+            border: none;
+        }
+        .choose:active {
+            border: none;
+            outline: none;
+        }
+        #staticreference {
+            background-color: white;
+            padding: 5%;
+        }
+        #dynamicContent {
+            background-color: white !important;
+            padding: 5%;
+        }
+        #ach {
+            position: relative;
+            float: right;
+            display: none;
+        }
+        .circliful {
+    position: relative;
+    float: right;
+}
+
+.circle-text, .circle-info, .circle-text-half, .circle-info-half {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+}
+
+.circle-info, .circle-info-half {
+    color: #999;
+}
+
+.circliful .fa {
+    margin: -10px 3px 0 3px;
+    position: relative;
+    bottom: 4px;
+}

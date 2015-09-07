@@ -1,0 +1,121 @@
+<!DOCTYPE xhtml>
+<html>
+
+<head>
+    <title>VZW Career Passport</title>
+    <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.js"></script>
+    <script src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v4.0.2.js"></script>
+    <link rel="stylesheet" href="src/passport.css">
+  <!---  <link rel="stylesheet" href="normalize.css"> -->
+    <link rel="stylesheet" href="skeleton.css">
+    <link type="text/css" rel="stylesheet" href="http://fast.fonts.net/cssapi/6f7e4816*513f*4179*a50e*2c577d292959.css" />
+</head>
+<body>
+
+    <div class="header z-depth-1">
+
+        <h1>Passport Admin</h1>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="ten columns">
+                <div id="login" class="login-card z-depth-1">
+                    <h3>Please Log-in</h3>
+                    <div class="u-full-width">
+                        <input class="email u-full-width" type="text" placeholder="Email" />
+                        <input class="pw u-full-width" type="password" placeholder="Password" />
+                        <button class="button-primary u-full-width" type="Submit" id="Login">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div class="four columns z-depth-1">
+                <div>
+                    <div class="row TopLeft">
+                        <select class="choose">
+                            <option selected>Users</option>
+                            <option>Admins</option>
+                        </select>
+                        
+                        <input id="search" type="text"> </input> <a> &#128269; </a>
+                    </div>
+                    <div class="row">
+                        <a onclick="update.first();" style="float: right; padding-right: 10px;">Quick Snapshot</a>
+                    </div>
+                    <div class="row" id="userholder">
+                        <select multiple id="users" class="users u-full-width">
+                            {{#each this}}
+                            <option value={{@key}}>{{this}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="row">
+                        <center><button class="button-primary">Add Users</button></center>
+                    </div>
+                </div>
+            </div>
+            <div  class="eight columns" id="userdiv">
+                <div id="staticreference" class="z-depth-2">
+                    <div id="firstload">
+                        <div class="row"><center><h3> {{firstload.title}} </h3><center></div>
+                        <h6>
+                        <div>Total Number of Users: {{totalusers}} </div>
+                        <div>Highest Achievement: {{highestpct}}</div>
+                        <div>Currently Online: {{online}}</div>
+                        <div>Other information: can_go_here</div>
+                    </h6>
+                    </div>
+                    <div class="addusers" style="display:none;">
+                        <div class="row">
+                            E-mail:
+                            <input type="text" id="e-mail" />
+                        </div>
+                        <div class="row">Password:
+                            <input type="text" id="password" />
+                        </div>
+                        <div class="rel row">Name:
+                            <input type="text" id="name" />
+                        </div>
+                        <div class="rel row">Supervisor:
+                            <input type="text" id="sup">
+                        </div>
+                        <div class="rel row">Department:
+                            <input type="text" id="dept" />
+                        </div>
+                        <div class="rel row">Current Position:
+                            <input type="text" />
+                        </div>
+                        <div class="rel row">Applied for Position:
+                            <input type="text" />
+                        </div>
+                        <div class="row">
+                            <a id="text" style="padding-left:5px;"></a>
+                            <button class="button-primary">Add User</button>
+                            <button class="button-primary">Cancel</button>
+                            
+                        </div>
+                    </div>
+                    <div id="dynamicContent">
+                         <div id="pct" data-dimension="150" data-text="{{percent}}%" data-info="Progress" data-width="20" data-fontsize="20" data-percent="{{percent}}" data-fgcolor="red" data-bgcolor="#eee" data-fill="white" ></div>
+                         <div id="ach">{{{achupdate}}}</div>
+                        <div><h3>{{name}}</h3></div>
+                        <div>{{department}} // {{"current position"}}</div>
+                        <div>{{supervisor}}</div>
+                        <div>{{"applied for position"}}</div>
+                        <div class="row"> &nbsp; </div>
+                        <div class="row">
+                            <div style="float: right; background-color: white;">
+                                <button id="{{key}}" data="ach">Update Achievements</button>&nbsp;<button id="{{key}}" data="rem">Remove</button>&nbsp;<button id="{{key}}" data="edit">Edit</button>&nbsp;
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="src/passport.js"></script>
+    </html>

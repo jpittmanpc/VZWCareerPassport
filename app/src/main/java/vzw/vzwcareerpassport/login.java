@@ -3,25 +3,33 @@ package vzw.vzwcareerpassport;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.firebase.client.AuthData;
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 public class login extends AppCompatActivity {
     static String fbUrl = "https://vzw.firebaseio.com";
     static String TAG = "login class";
     public Firebase fireBase;
+    public ValueEventListener mConnectListener;
+    public ChildEventListener childEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
             /* Immediately set content view if Firebase is Auth */
+            loginFragment LoginFragment = new loginFragment();
             setContentView(R.layout.fragment);
         }
         Firebase.setAndroidContext(this);
@@ -67,9 +75,58 @@ public class login extends AppCompatActivity {
             }
         });
     }
+    public void onStart() {
+        super.onStart();
+        mConnectListener = fireBase.getRoot().child(".info/connected").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean connected = (Boolean) dataSnapshot.getValue();
+                if (connected) {
+                    Log.v(TAG, "Connected");
+                    loginFragment LoginFragment = new loginFragment();
+                    setContentView(R.layout.fragment);
+                } else {
+                    Log.v(TAG, "No longer connected");
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                //This shouldn't happen
+            }
+        });
+        childEventListener = fireBase.getRoot().child("users").child(fireBase.getAuth().getUid()).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.v(TAG, "child added" + s + dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                Log.v(TAG, "child changed" + s + dataSnapshot.getValue());
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Log.v(TAG, "removed " + dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                Log.v(TAG, "moved" + s + dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Log.v(TAG, "error" + firebaseError);
+
+            }
+        });
+    }
 
 
-    /*@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_login, menu);
@@ -90,5 +147,4 @@ public class login extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    */
 }

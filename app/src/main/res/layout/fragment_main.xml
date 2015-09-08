@@ -1,142 +1,74 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="fill_parent"
-    android:background="#C3C3C3"
-    android:baselineAligned="false"
-    android:longClickable="true"
-    android:weightSum="1">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cv"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/person_name"
+                android:layout_alignParentTop="true"
+                android:textSize="30sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/person_department"
+                android:layout_below="@+id/person_name"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/person_title"
+                android:layout_below="@+id/person_department"
+                />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dip"
-    android:layout_marginTop="20dp"
-    android:padding="20dip"
-    android:id="@+id/top"
-    android:background="#FFFFFF"
-    android:layout_gravity="top|center_horizontal"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="20dip"
-    android:id="@+id/name"
-    android:textColor="#CD040B"
-    android:text="Christina Bishop"
-    android:textSize="@dimen/abc_text_size_headline_material"
-    />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:text="Tech Support"
-        android:textColor="#333333"
-        android:id="@+id/dept"
-        />
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/dept"
-    android:text="0"
-    android:layout_marginLeft="30dp"
-        android:textColor="#333333"
-        android:textSize="30dp"
-        android:paddingTop="15dip"
-
-    android:id="@+id/achievementNumber"
-    />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Achievements"
-        android:textColor="#333333"
-        android:layout_below="@+id/achievementNumber"
-
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dept"
-        android:text="0"
-        android:layout_marginLeft="30dp"
-        android:textColor="#333333"
-        android:textSize="30dp"
-        android:paddingTop="15dip"
-        android:id="@+id/percentage"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dept"
-        android:textColor="#333333"
-        android:textSize="30dp"
-        android:paddingTop="15dip"
-        android:text="0%"
-        android:layout_alignParentRight="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Complete"
-        android:id="@+id/pctText"
-        android:textColor="#333333"
-        android:layout_below="@+id/achievementNumber"
-        android:layout_alignParentRight="true"
-
-        />
-</RelativeLayout>
-
-    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFF"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:paddingBottom="@dimen/activity_horizontal_margin"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/top">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ACHIEVEMENTS"
-            android:paddingLeft="5dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:id="@+id/achText"
-            android:textColor="#000"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:textColor="#000"
-            android:background="#C3C3C3"
-            android:layout_height="3dp"
-            android:layout_below="@+id/achText"
-            android:id="@+id/textView" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:text="1"
-            android:background="#000"
+        android:layout_height="match_parent"
+        android:background="@style/AppTheme"
+        android:padding="16dp"
+        android:layout_marginTop="@dimen/abc_action_bar_content_inset_material">
 
-            android:layout_below="@+id/textView"
-            android:layout_alignParentStart="true"
-            android:foreground="@drawable/ach" />
-        <Button
-            android:layout_width="wrap_content"
+        <GridView
+            android:id="@+id/gridView"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:text="1"
-            android:background="#000"
-
-            android:layout_below="@+id/textView"
-            android:foreground="@drawable/ach" />
-
+            android:columnWidth="100dp"
+            android:drawSelectorOnTop="true"
+            android:gravity="center"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="5dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="22dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
-</RelativeLayout>
+
+</LinearLayout>

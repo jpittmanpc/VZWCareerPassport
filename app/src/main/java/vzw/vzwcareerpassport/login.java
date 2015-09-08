@@ -3,8 +3,6 @@ package vzw.vzwcareerpassport;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +13,7 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ServerValue;
 import com.firebase.client.ValueEventListener;
 
 public class login extends AppCompatActivity {
@@ -53,6 +52,7 @@ public class login extends AppCompatActivity {
             }
         });
     }
+
     final void auth(String email, String pass) {
         Log.v(TAG, email + " " + pass);
         fireBase.authWithPassword(email, pass, new com.firebase.client.Firebase.AuthResultHandler() {
@@ -75,6 +75,7 @@ public class login extends AppCompatActivity {
             }
         });
     }
+
     public void onStart() {
         super.onStart();
         mConnectListener = fireBase.getRoot().child(".info/connected").addValueEventListener(new ValueEventListener() {
@@ -83,6 +84,9 @@ public class login extends AppCompatActivity {
                 boolean connected = (Boolean) dataSnapshot.getValue();
                 if (connected) {
                     Log.v(TAG, "Connected");
+                    Firebase presenceSys = fireBase.child("presence").child(fireBase.getAuth().getUid());
+                    presenceSys.onDisconnect().setValue(new ServerValue().TIMESTAMP);
+                    presenceSys.setValue("Online");
                     loginFragment LoginFragment = new loginFragment();
                     setContentView(R.layout.fragment);
                 } else {
@@ -124,8 +128,9 @@ public class login extends AppCompatActivity {
             }
         });
     }
+}
 
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -148,3 +153,4 @@ public class login extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+*/

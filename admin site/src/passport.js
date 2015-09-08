@@ -3,10 +3,30 @@ db = new Firebase(fbUrl);
 update= {
     user: function(key, query) {
         $("#firstload").hide();
+        $(".addusers").hide();
+        $("#dynamicContent").show();
         var temp = Handlebars.compile(UserDiv)
         query['percent'] = "50";
         query['key'] = key;
-        query['achupdate'] ="<select multiple class='ach'><option value='1'>one</option></select>";
+        if (presence[key]) {
+            query["online"] = presence[key];
+            if (query["online"] != "Online") {
+                a = new Date(presence[key]);
+                query.online = "Last seen: " + ((a.getMonth()) + 1) + "-" + a.getDate() + "-" + a.getFullYear();
+            }
+        }
+
+        if (query.achievements) {
+                 query['percent'] = Math.floor(((query.achievements.length) -1) * 10);
+                 query['achupdate'] = "<select class='ach' multiple>";
+                 i=0;
+                for (z=0;z<10;z++) {
+                    query['achupdate'] = query['achupdate'] + "<option value=" + i + ">" + z + "</option>";
+                }
+                query['achupdate'] = query['achupdate'] + "</select>";
+                console.log(query['achupdate']);
+        }
+        else { query['percent'] = 0; }
         $("#dynamicContent").html(temp(query));
         $("button#" + key).on("click", function() {
              data = $(this).attr("data");
@@ -54,6 +74,7 @@ update= {
 
 window.onload = function() {
     if (db.getAuth() == null) {
+        $(".header").html(Handlebars.compile(Header));
         $("#content").hide();
         $("#Login").on("click", function() {
             $('div.text').text("validating..");
@@ -69,14 +90,27 @@ window.onload = function() {
                     $('#login').animate({
                         height: 'toggle'
                     });
-                    getUsers();
+                    start();
                     $('#content').fadeIn("300");
 
                 }
             });
         });
     } else {
+        start();
+    }
+}
+function start() {
         getUsers();
+          if (db.getAuth()) {
+             temp=Handlebars.compile(Header);
+            context={"logout":"<button id='logout'>Logout</button>"};
+            $(".header").html(temp(context));
+            $("#logout").on("click", function() {
+                db.unauth();
+                $("#content").hide();location.reload();
+            });
+        }
         $("#login").hide();
         $("button").on("click", function() {
             $(".addusers a#text").text("");
@@ -96,7 +130,17 @@ window.onload = function() {
                 console.log(this.textContent);
             }
         });
-}
+        db.child(".info/connected").on('value', function(data) {
+            if (data.val()) {
+                presenceserver = db.child('presence').child(db.getAuth().uid);
+                console.log("Connected");
+                presenceserver.onDisconnect().set(Firebase.ServerValue.TIMESTAMP);
+                presenceserver.set("Online");
+            }
+            else { 
+                console.log("Disconnected");
+            }
+        });
 }
 
 function createUser() {
@@ -119,11 +163,12 @@ function createUser() {
         function(error, success) {
             if (success) {
                 console.log(success);
+                userUID = success.uid;
                 $('.addusers a#text').html("Setting Data...");
                 $("div.addusers div.rel").each(function() {
                     if ($(this).find('input')[0]) {
-
-                        db.child('users').child(success.uid).child($(this).text().toLowerCase().slice(0, -2)).set($(this).find('input').val())
+                        db.child('users').child(userUID).child($(this).text().toLowerCase().split(":")[0])
+                        .set($(this).find('input').val())
                     }
                 });
                 $('.addusers a#text').html("Added " + $(".addusers input#name").val() + "!");
@@ -141,6 +186,12 @@ function createUser() {
 
 function getUsers() {
     $("#users").html("");
+    db.child("presence").once("value",function(b) {
+        presence = b.val();
+    });
+    db.child("presence").on("child_changed",function(data) {
+        presence[data.key()] = data.val();
+    });
     db.child('users').on("child_added", function(data) {
         dataval = data.val();
         if (dataval.name && !dataval.admin) {
@@ -166,6 +217,7 @@ function get(name) {
 }
 //Here I am catching all of the elements that will change.
 (function() {
+    Header = $(".header").html();
     UserDiv = $("#dynamicContent").html()
     UserList = $("#userholder").html()
     firstLoad = $("#firstload").html();

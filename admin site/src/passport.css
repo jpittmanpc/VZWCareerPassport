@@ -26,12 +26,20 @@
         .header {
             background-color: #F7F7F7;
             color: black;
+            width: 100%;
         }
-
+        .header button {
+            float: right;
+            position: absolute;
+            top: 1%;
+            right: 2%;
+          
+        }
         .header h1 {
             text-align: center;
             color: #333;
             font-size: 2.75em;
+            padding-bottom: 1%;
         }
 
         .login-card {
@@ -162,12 +170,15 @@
         }
         #ach {
             position: relative;
-            float: right;
             display: none;
+        }
+        .ach {
+             overflow: auto;
+             height: 200px;
         }
         .circliful {
     position: relative;
-    float: right;
+    float: left;
 }
 
 .circle-text, .circle-info, .circle-text-half, .circle-info-half {

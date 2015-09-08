@@ -13,26 +13,29 @@
 </head>
 <body>
 
-    <div class="header z-depth-1">
+    <div class="header z-depth-2">
 
         <h1>Passport Admin</h1>
+        {{{logout}}}
 
     </div>
     <div class="container">
         <div class="row">
             <div class="ten columns">
-                <div id="login" class="login-card z-depth-1">
+                <div class="one column"></div>
+                <div id="login" class="login-card z-depth-3">
                     <h3>Please Log-in</h3>
                     <div class="u-full-width">
                         <input class="email u-full-width" type="text" placeholder="Email" />
                         <input class="pw u-full-width" type="password" placeholder="Password" />
                         <button class="button-primary u-full-width" type="Submit" id="Login">Login</button>
                     </div>
+                    <div class="one column"></div>
                 </div>
             </div>
         </div>
         <div id="content">
-            <div class="four columns z-depth-1">
+            <div class="four columns z-depth-2">
                 <div>
                     <div class="row TopLeft">
                         <select class="choose">
@@ -58,14 +61,16 @@
                 </div>
             </div>
             <div  class="eight columns" id="userdiv">
+
                 <div id="staticreference" class="z-depth-2">
                     <div id="firstload">
-                        <div class="row"><center><h3> {{firstload.title}} </h3><center></div>
+                        <div class="row">
+                            <center><h3> {{firstload.title}} </h3><center></div>
                         <h6>
-                        <div>Total Number of Users: {{totalusers}} </div>
-                        <div>Highest Achievement: {{highestpct}}</div>
-                        <div>Currently Online: {{online}}</div>
-                        <div>Other information: can_go_here</div>
+                        <div class="row">Total Number of Users: {{totalusers}} </div>
+                        <div class="row">Highest Achievement: {{highestpct}}</div>
+                        <div class="row">Currently Online: {{online}}</div>
+                        <div class="row">Other information: can_go_here</div>
                     </h6>
                     </div>
                     <div class="addusers" style="display:none;">
@@ -91,17 +96,20 @@
                         <div class="rel row">Applied for Position:
                             <input type="text" />
                         </div>
-                        <div class="row">
-                            <a id="text" style="padding-left:5px;"></a>
-                            <button class="button-primary">Add User</button>
-                            <button class="button-primary">Cancel</button>
+                        <div class="row" >
+                            <a id="text" style="padding-left:5px; color: black;"></a>
+                            <button class="button-primary" style="float: right;">Add User</button>
+                            <button class="button-primary" style="float: right;">Cancel</button>
                             
                         </div>
                     </div>
                     <div id="dynamicContent">
+                        <div class="six columns" style="float: right; background-color: white;">
                          <div id="pct" data-dimension="150" data-text="{{percent}}%" data-info="Progress" data-width="20" data-fontsize="20" data-percent="{{percent}}" data-fgcolor="red" data-bgcolor="#eee" data-fill="white" ></div>
                          <div id="ach">{{{achupdate}}}</div>
+                     </div>
                         <div><h3>{{name}}</h3></div>
+                        <div>{{online}}</div>
                         <div>{{department}} // {{"current position"}}</div>
                         <div>{{supervisor}}</div>
                         <div>{{"applied for position"}}</div>

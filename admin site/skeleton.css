@@ -158,11 +158,11 @@ p {
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
-  color: white;
+  color: #0066CC;
   cursor: default;
 }
 a:hover {
-  color: black;
+  color: #00478E;
   cursor: default;
 }
 
@@ -265,7 +265,6 @@ textarea {
 input[type="email"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,
-input[type="text"]:focus,
 input[type="tel"]:focus,
 input[type="url"]:focus,
 input[type="password"]:focus,

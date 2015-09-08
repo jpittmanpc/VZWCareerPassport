@@ -20,4 +20,5 @@ public class loginFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, true);
     }
+
 }

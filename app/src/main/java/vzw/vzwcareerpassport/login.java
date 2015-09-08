@@ -1,5 +1,7 @@
 package vzw.vzwcareerpassport;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -22,6 +24,11 @@ public class login extends AppCompatActivity {
     public Firebase fireBase;
     public ValueEventListener mConnectListener;
     public ChildEventListener childEventListener;
+    public AuthData fbUID;
+
+    public AuthData getFbUID() {
+        return fbUID;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,8 @@ public class login extends AppCompatActivity {
                 Error.setText("Loading..");
                 loginFragment LoginFragment = new loginFragment();
                 setContentView(R.layout.fragment);
+                startListen();
+                presence();
             }
 
             public void onAuthenticationError(FirebaseError firebaseError) {
@@ -75,7 +84,16 @@ public class login extends AppCompatActivity {
             }
         });
     }
-
+    public void logout(View v) {
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fireBase.unauth();
+                fireBase.goOffline();
+                setContentView(R.layout.activity_login);
+            }
+        });
+    }
     public void onStart() {
         super.onStart();
         mConnectListener = fireBase.getRoot().child(".info/connected").addValueEventListener(new ValueEventListener() {
@@ -84,11 +102,7 @@ public class login extends AppCompatActivity {
                 boolean connected = (Boolean) dataSnapshot.getValue();
                 if (connected) {
                     Log.v(TAG, "Connected");
-                    Firebase presenceSys = fireBase.child("presence").child(fireBase.getAuth().getUid());
-                    presenceSys.onDisconnect().setValue(new ServerValue().TIMESTAMP);
-                    presenceSys.setValue("Online");
-                    loginFragment LoginFragment = new loginFragment();
-                    setContentView(R.layout.fragment);
+                    presence();
                 } else {
                     Log.v(TAG, "No longer connected");
                 }
@@ -99,36 +113,89 @@ public class login extends AppCompatActivity {
                 //This shouldn't happen
             }
         });
-        childEventListener = fireBase.getRoot().child("users").child(fireBase.getAuth().getUid()).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.v(TAG, "child added" + s + dataSnapshot.getValue());
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Log.v(TAG, "child changed" + s + dataSnapshot.getValue());
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.v(TAG, "removed " + dataSnapshot.getValue());
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                Log.v(TAG, "moved" + s + dataSnapshot.getValue());
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                Log.v(TAG, "error" + firebaseError);
-
-            }
-        });
     }
-}
+
+    private void presence() {
+        if (getFbUID() != null) {
+            Firebase presenceSys = fireBase.child("presence").child(fireBase.getAuth().getUid());
+            presenceSys.onDisconnect().setValue(new ServerValue().TIMESTAMP);
+            presenceSys.setValue("Online");
+            loginFragment LoginFragment = new loginFragment();
+            setContentView(R.layout.fragment);
+        }
+    }
+
+    public void startListen() {
+            childEventListener = fireBase.getRoot().child("users").child(fireBase.getAuth().getUid()).addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String var) {
+                    if (dataSnapshot.getKey() == "name") {
+                        TextView textView = (TextView) findViewById(R.id.name);
+                        Log.v(TAG, "Snapshot" + dataSnapshot);
+                        textView.setText(dataSnapshot.getValue().toString());
+                    }
+                    if (dataSnapshot.getKey() == "department") {
+                        TextView textView = (TextView) findViewById(R.id.dept);
+                        textView.setText(dataSnapshot.getValue().toString());
+                    }
+                    if (dataSnapshot.getKey() == "achievements") {
+                        update(dataSnapshot);
+                        Log.v(TAG, "Ach " + dataSnapshot.getChildrenCount());
+                    }
+
+                    Log.v(TAG, "child added " + " Previous: " + var + " this " + dataSnapshot.getKey() + " value: " + dataSnapshot.getValue());
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    update(dataSnapshot);
+                    Log.v(TAG, "child changed" + s + dataSnapshot.getValue());
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+                    Log.v(TAG, "removed " + dataSnapshot.getValue());
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                    Log.v(TAG, "moved" + s + dataSnapshot.getValue());
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+                    Log.v(TAG, "error" + firebaseError);
+
+                }
+            });
+        }
+    public void update(DataSnapshot dataSnapshot) {
+        Log.v(TAG, "Update " + dataSnapshot.getKey());
+            Log.v(TAG, "Which it does..");
+            TextView percentage = (TextView) findViewById(R.id.pct);
+            TextView textView = (TextView) findViewById(R.id.achievementNumber);
+            int Num = (int) dataSnapshot.getChildrenCount();
+            Log.v(TAG, "n " + Num);
+            String text = String.valueOf(Num);
+            percentage.setText(text + "0%");
+            textView.setText(text);
+            for (int i = Num; i > 0; i--) {
+                Log.v(TAG, "Number " + i);
+                Button change = (Button) getView(i);
+                change.setBackground(null);
+                change.setBackgroundColor(0xff99cc00);
+        }
+    }
+    public View getView(int id) {
+        String namez = "ach" + id;
+        Resources res = getResources();
+        Context mContext = getBaseContext();
+        int idz = res.getIdentifier("ach" + id, "id", mContext.getPackageName());
+        return findViewById(idz);
+    }
+    }
+
 
 /*
     @Override

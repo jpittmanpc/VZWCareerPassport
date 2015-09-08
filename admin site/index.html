@@ -66,39 +66,37 @@
                     <div id="firstload">
                         <div class="row">
                             <center><h3> {{firstload.title}} </h3><center></div>
-                        <h6>
+                        <h5>
                         <div class="row">Total Number of Users: {{totalusers}} </div>
                         <div class="row">Highest Achievement: {{highestpct}}</div>
                         <div class="row">Currently Online: {{online}}</div>
                         <div class="row">Other information: can_go_here</div>
-                    </h6>
+                    </h5>
                     </div>
                     <div class="addusers" style="display:none;">
                         <div class="row">
-                            E-mail:
+                            <p>E-mail:</p>
                             <input type="text" id="e-mail" />
                         </div>
-                        <div class="row">Password:
+                        <div class="row"><p>Employee ID:</p>
                             <input type="text" id="password" />
                         </div>
-                        <div class="rel row">Name:
+                        <div class="rel row"><p>Name:</p>
                             <input type="text" id="name" />
                         </div>
-                        <div class="rel row">Supervisor:
+                        <div class="rel row"><p>Supervisor:</p>
                             <input type="text" id="sup">
                         </div>
-                        <div class="rel row">Department:
-                            <input type="text" id="dept" />
-                        </div>
-                        <div class="rel row">Current Position:
-                            <input type="text" />
-                        </div>
-                        <div class="rel row">Applied for Position:
-                            <input type="text" />
+                        <div class="rel row"><p>Department:
+                            <select id="dept" >
+                                <option value="Customer Specialist">Care</option>
+                                <option value="Technical Support">Tech</option>
+                                <option value="Customer Pro">Pro</option>
+                            </select>
                         </div>
                         <div class="row" >
                             <a id="text" style="padding-left:5px; color: black;"></a>
-                            <button class="button-primary" style="float: right;">Add User</button>
+                            <button class="button-primary" style="float: right;">Submit</button>
                             <button class="button-primary" style="float: right;">Cancel</button>
                             
                         </div>
@@ -109,10 +107,10 @@
                          <div id="ach">{{{achupdate}}}</div>
                      </div>
                         <div><h3>{{name}}</h3></div>
-                        <div>{{online}}</div>
+                        <h5><div>{{online}}</div>
                         <div>{{department}} // {{"current position"}}</div>
                         <div>{{supervisor}}</div>
-                        <div>{{"applied for position"}}</div>
+                        <div>{{"applied for position"}}</div></h5>
                         <div class="row"> &nbsp; </div>
                         <div class="row">
                             <div style="float: right; background-color: white;">

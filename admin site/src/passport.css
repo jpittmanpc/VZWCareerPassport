@@ -1,3 +1,9 @@
+       body {
+        background-color: #F6F6F6;
+       }
+       .TopLeft a {
+        color:white !important;
+       }
       .z-depth-1 {
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
         }
@@ -22,9 +28,25 @@
         .z-depth-5 {
             box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
         }
-
+        div.header h1 {
+            color: #CD040B;
+        }
+        #ach a {
+            color: #0066CC;
+            font-size: 1.5em;
+        }
+        #ach a:hover {
+            color: #00478E;
+        }
+        #ach {
+            text-align: start;
+        }
+        div.row p {
+            text-align:start;
+            margin:0px;
+        }
         .header {
-            background-color: #F7F7F7;
+            background-color: #E4E5E3;
             color: black;
             width: 100%;
         }
@@ -34,6 +56,10 @@
             top: 1%;
             right: 2%;
           
+        }
+        .header button:hover {
+            background-color: #A80309;
+            color: white;
         }
         .header h1 {
             text-align: center;
@@ -45,7 +71,7 @@
         .login-card {
             padding: 60px;
             width: 300px;
-            background-color: #F7F7F7;
+            background-color: #E4E5E3;
             margin: 50 auto 10px;
             border-radius: 2px;
             overflow: hidden;
@@ -99,17 +125,7 @@
             padding: 10px 10px 10px 10px;
         }
 
-        .addusers input {
-            text-align: left;
-            float: right;
-            width: 60%;
-            border: none !important;
-            border-bottom-style: solid !important;
-            border-bottom-width: thin !important;
-            border-radius: 0px !important;
-            margin-right: 10px;
-            margin-left: 10px;
-        }
+
         select#users:focus {
             border: none;
         }
@@ -120,23 +136,16 @@
             margin-left:1%;
             margin-right:1%;
         }
-        .addusers input:focus {
-            outline: none;
-            border: none;
-            border-bottom-color: blue;
-            border-bottom-style: solid;
-            border-bottom-width: thin;
-        }
         select.choose {
             margin-bottom: 0px;
         }
         .TopLeft {
-            background: red;
+            background: #CD040B;
             color: white;
             padding: 0;
         }
         #search {
-            background: red;
+            background: #CD040B;
             color: white;
             border: none;
             outline: none;
@@ -148,10 +157,10 @@
             border-radius: 0px;
         }
         .columns {
-            background-color: lightGrey;
+            background-color: #E4E5E3;
         }
         .choose {
-            background-color: red;
+            background-color: #CD040B;
             color: white;
             outline: none;
             border: none;

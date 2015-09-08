@@ -18,21 +18,20 @@ update= {
 
         if (query.achievements) {
                  query['percent'] = Math.floor(((query.achievements.length) -1) * 10);
-                 query['achupdate'] = "<select class='ach' multiple>";
-                 i=0;
-                for (z=0;z<10;z++) {
-                    query['achupdate'] = query['achupdate'] + "<option value=" + i + ">" + z + "</option>";
-                }
-                query['achupdate'] = query['achupdate'] + "</select>";
-                console.log(query['achupdate']);
+                 i = ((query.achievements.length) -1);
+                 if (i <= 10) {
+                    query["achupdate"] = "Unmark Complete: <a id=" + key + " data=" + i + ">Step " + i + "</a><br>" +
+                        "Mark Complete:  <a id=" + key + " data=" + ((i) + 1) + ">Step " + ((i) + 1) + "</a>";
+                 }
+                 else { query["achupdate"] = "Must be at 10"; }
         }
-        else { query['percent'] = 0; }
+        else { query['percent'] = 0; query['achupdate'] = "Mark Complete: <a id="+key+" data='1'>Step 1</a>"; }
+     
         $("#dynamicContent").html(temp(query));
         $("button#" + key).on("click", function() {
              data = $(this).attr("data");
              if (data == 'ach') {
                 update.achievements(key);
-                console.log($(this).next());
              }
              console.log(data);
         });
@@ -40,7 +39,28 @@ update= {
     achievements: function(key) {
         $("#pct").hide();
         $("#ach").show();
+        db.child('users').child(key).child("achievements").once("value", function(s) {
+            achref = s.val();
+            console.log(achref);
+        });
         $("select.ach").css({'width': '100%'});
+            $("div#ach a").on("click", function() {
+            copy=$(this);
+            if (achref) {
+                if (achref[copy.attr("data")] == null || !true) {
+            db.child("users").child(copy.attr("id")).child("achievements").child(copy.attr("data")).set(true,function(error) {
+                if (error) { copy.html("Error!"); }
+                else { copy.html("Updated."); }
+            });
+        }
+        else { db.child("users").child(copy.attr("id")).child("achievements").child(copy.attr("data")).remove(); copy.html("Removed!"); }
+        }
+        else { db.child("users").child(copy.attr("id")).child("achievements").child(copy.attr("data")).set(true, function(a) {
+            copy.html("Updated!");
+        });
+    }
+
+        });
     },
     userlist: function(query) {
         if (query == "admin") {
@@ -120,7 +140,7 @@ function start() {
                     $("#dynamicContent").hide();
                     $(".addusers").show();
             }
-            if (this.textContent == "Add User") {
+            if (this.textContent == "Submit") {
                 createUser();
             }
             if (this.textContent == "Remove User") {
@@ -168,7 +188,11 @@ function createUser() {
                 $("div.addusers div.rel").each(function() {
                     if ($(this).find('input')[0]) {
                         db.child('users').child(userUID).child($(this).text().toLowerCase().split(":")[0])
-                        .set($(this).find('input').val())
+                        .set($(this).find('input').val());
+                    }
+                    else if ($(this).attr("id") == "dept") {
+                         db.child('users').child(userUID).child("department")
+                        .set($(this).val());
                     }
                 });
                 $('.addusers a#text').html("Added " + $(".addusers input#name").val() + "!");

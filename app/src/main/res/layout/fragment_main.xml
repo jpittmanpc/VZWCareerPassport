@@ -64,18 +64,8 @@
         android:layout_below="@+id/achievementNumber"
 
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dept"
-        android:text="0"
-        android:layout_marginLeft="30dp"
-        android:textColor="#333333"
-        android:textSize="30dp"
-        android:paddingTop="15dip"
-        android:id="@+id/percentage"
-        />
-    <TextView
+
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dept"
@@ -83,6 +73,7 @@
         android:textSize="30dp"
         android:paddingTop="15dip"
         android:text="0%"
+            android:id="@+id/pct"
         android:layout_alignParentRight="true" />
     <TextView
         android:layout_width="wrap_content"
@@ -203,5 +194,14 @@
             android:background="@drawable/trophy"
             />
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:id="@+id/logout"
+        android:onClick="logout"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

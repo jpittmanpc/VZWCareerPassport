@@ -4,5 +4,9 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
     </style>
+    <style name="MyActionBar"
+    parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="android:background">#FFF</item>
+</style>
 
 </resources>

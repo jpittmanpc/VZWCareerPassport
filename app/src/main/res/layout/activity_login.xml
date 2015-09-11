@@ -1,14 +1,20 @@
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
+    android:id="@+id/linear"
     android:paddingLeft="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:background="#FFFFFF"
-    android:orientation="horizontal"
+    android:layout_centerVertical="true"
+    android:orientation="vertical"
     >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,22 +35,24 @@
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/abc_floating_window_z"
         android:id="@+id/topLogo2" />
+        <ImageView
+            android:layout_width="225dp"
+            android:layout_height="225dp"
+            android:id="@+id/imageView"
+            android:layout_below="@+id/topLogo2"
+            android:cropToPadding="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/passport_icon" />
+    </RelativeLayout>
 
 
-    <ImageView
-        android:layout_width="150dip"
-        android:layout_height="150dip"
-        android:id="@+id/imageView"
-        android:layout_below="@+id/topLogo2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/passport_icon"
-        android:layout_marginBottom="13sp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000"
         android:text=""
+        android:layout_marginTop="-10dp"
         android:textAlignment="center"
         android:id="@+id/error"
         android:layout_marginLeft="@dimen/abc_action_bar_icon_vertical_padding_material"
@@ -52,9 +60,8 @@
         android:layout_marginBottom="@dimen/abc_action_bar_icon_vertical_padding_material"
         android:layout_below="@+id/imageView"
         android:gravity="center_horizontal" />
-
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:id="@+id/email"
@@ -64,17 +71,22 @@
         android:background="@drawable/underline"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:drawableStart="@drawable/usericon"
         android:layout_marginBottom="15dp"
         android:layout_below="@id/error"
         android:textCursorDrawable="@null"
         android:layout_alignParentEnd="true"
+        android:drawablePadding="5dp"
         android:layout_alignParentStart="true" />
+
+
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:inputType="textPassword"
+        android:drawablePadding="5dp"
         android:ems="10"
         android:background="@drawable/underline"
         android:textCursorDrawable="@null"
@@ -82,6 +94,7 @@
         android:textColorHint="#959595"
         android:hint="Password"
         android:id="@+id/pw"
+        android:drawableLeft="@drawable/pwicon"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/email"
         android:layout_alignParentStart="true" />
@@ -95,13 +108,11 @@
         android:background="@drawable/buttons"
         android:layout_below="@+id/pw"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dip"
         android:textColor="#959595"
         android:layout_below="@+id/signButton"
-        android:layout_centerInParent="true"
-        android:text="forgot password?" />
+        android:text="" />
 
-
-</RelativeLayout>
+</LinearLayout>

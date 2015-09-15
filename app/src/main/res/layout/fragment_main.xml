@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     xmlns:sndroid="http://schemas.android.com/apk/res-auto"
-    android:background="#C3C3C3"
+    android:background="#f0f0f0"
     android:baselineAligned="false"
     android:longClickable="true"
     android:weightSum="1">
@@ -25,8 +25,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layoutMode="opticalBounds"
-        android:translationZ="12dp"
-        android:elevation="12dp">
+        android:translationZ="5px"
+        android:elevation="5dp">
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -67,27 +67,14 @@
 
         />
 
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dept"
-        android:textColor="#333333"
-        android:textSize="30dp"
-        android:paddingTop="15dip"
-        android:text="0%"
-            android:id="@+id/pct"
-        android:layout_alignParentRight="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Complete"
-        android:id="@+id/pctText"
-        android:textColor="#333333"
-        android:layout_below="@+id/achievementNumber"
-        android:layout_alignParentRight="true"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView3"
+            android:layout_alignTop="@+id/dept"
+            android:layout_alignParentEnd="true" />
 
-        />
-</RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -96,84 +83,98 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
+        android:translationZ="5px"
+        android:elevation="5dp"
         android:id="@+id/badges"
         android:paddingBottom="@dimen/activity_horizontal_margin"
         android:layout_below="@+id/top">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ACHIEVEMENTS"
             android:paddingLeft="5dp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
+            android:layout_alignParentTop="true"
             android:id="@+id/achText"
-            android:textColor="#000"
+            android:textColor="#333333"
             />
-        <TextView
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:textColor="#000"
-            android:background="#C3C3C3"
-            android:layout_height="3dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/achText"
-            android:id="@+id/textView" />
 
-    </RelativeLayout>
+            android:id="@+id/pleasework"
 
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/badges"
-        android:id="@+id/pleasework"
-
-        >
+            >
 
         <LinearLayout
             android:orientation="horizontal"
-            android:gravity="top"
             android:layout_width="wrap_content"
             android:layout_height="85dp"
             android:background="#FFF"
             android:id="@+id/toprow"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-             >
+            android:gravity="top">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/ach1"
-                android:src="@drawable/badge0"
                 android:layout_weight="1"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:background="#d4d4d4"
+                android:minWidth="150dp"
+                android:minHeight="107dp"
+                android:layout_margin="2dp"
+                android:padding="0dp"
+                android:nestedScrollingEnabled="false" />
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/ach2"
-
-                android:src="@drawable/badge0"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:background="#d4d4d4"
+                android:padding="0dp"
+                android:minHeight="107dp"
+                android:minWidth="150dp"
+                android:nestedScrollingEnabled="false" />
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/ach3"
-
-                android:src="@drawable/badge0"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:background="#d4d4d4"
+                android:padding="0dp"
+                android:minHeight="107dp"
+                android:minWidth="150dp"
+                android:nestedScrollingEnabled="false" />
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/ach4"
-
-                android:src="@drawable/badge0"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:background="#d4d4d4"
+                android:padding="0dp"
+                android:minHeight="107dp"
+                android:minWidth="150dp"
+                android:nestedScrollingEnabled="false" />
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/ach5"
-
-                android:src="@drawable/badge0"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:background="#d4d4d4"
+                android:padding="0dp"
+                android:minHeight="107dp"
+                android:minWidth="150dp"
+                android:nestedScrollingEnabled="false" />
 
 
 
@@ -185,7 +186,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/pleasework"
         android:layout_marginBottom="@dimen/abc_switch_padding"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/frameLayout">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -203,40 +205,89 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/ach6"
 
-                android:src="@drawable/badge0"
-                android:layout_weight="1"                />
+                android:layout_weight="1"
+                android:background="#d4d4d4"
+                android:minHeight="107dp"
+                android:minWidth="150dp"
+                android:layout_margin="2dp" />
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/ach7"
 
-                android:src="@drawable/badge0"
                 android:layout_weight="1"
-                />
+                android:layout_margin="2dp"
+                android:background="#d4d4d4"
+                android:padding="0dp"
+                android:minHeight="107dp"
+                android:nestedScrollingEnabled="false"
+                android:minWidth="150dp" />
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/ach8"
 
-                android:src="@drawable/badge0"
                 android:layout_weight="1"
-                />
+                android:layout_margin="2dp"
+                android:background="#d4d4d4"
+                android:padding="0dp"
+                android:minHeight="107dp"
+                android:nestedScrollingEnabled="false"
+                android:minWidth="150dp" />
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/ach9"
 
-                android:src="@drawable/badge0"
                 android:layout_weight="1"
-                />
+                android:layout_margin="2dp"
+                android:background="#d4d4d4"
+                android:padding="0dp"
+                android:minHeight="107dp"
+                android:nestedScrollingEnabled="false"
+                android:minWidth="150dp" />
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/ach10"
-                android:src="@drawable/badge0"
                 android:layout_weight="1"
-                />
-        </LinearLayout>
-    </FrameLayout>
+                android:layout_margin="2dp"
+                android:background="#d4d4d4"
+                android:padding="0dp"
+                android:minHeight="107dp"
+                android:nestedScrollingEnabled="false"
+                android:minWidth="150dp" />
+                 </LinearLayout>
+            </FrameLayout>
+        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        android:layout_marginTop="@dimen/abc_floating_window_z"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:translationZ="5dp"
+        android:elevation="5dp"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:layout_below="@+id/badges"
+        android:layout_alignParentStart="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="70px"
+            android:textColor="#000"
+            android:text="NEXT ACTION"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="70px"
+            android:textColor="#000"
+            android:text="Complete Talent Profile"
+            />
+
+    </RelativeLayout>
 
 </RelativeLayout>
